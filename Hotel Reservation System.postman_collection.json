@@ -1,0 +1,409 @@
+{
+	"info": {
+		"_postman_id": "a19b97e7-06dc-4801-9beb-e38e7191b143",
+		"name": "Hotel Reservation System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17955803"
+	},
+	"item": [
+		{
+			"name": "Hotel API's",
+			"item": [
+				{
+					"name": "GetAllHotels",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/hotel/getAllHotels",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"hotel",
+								"getAllHotels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetHotelById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/hotel/:hotelId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"hotel",
+								":hotelId"
+							],
+							"variable": [
+								{
+									"key": "hotelId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateOrUpdateHotel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hotelId\" : 1,\r\n    \"hotelName\" :\"Taj Krishna\",\r\n    \"address\" : \"Kphb,Hyderabad\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/v1/hotel/saveHotel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"hotel",
+								"saveHotel"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rooms APIs",
+			"item": [
+				{
+					"name": "CreateOrUpdateRoom",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hotelId\" : 1,\r\n    \"roomNumber\" :\"104\",\r\n    \"roomType\" : \"Deluxe\",\r\n    \"price\":900\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/v1/room/saveRoom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"room",
+								"saveRoom"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer Api's",
+			"item": [
+				{
+					"name": "Get Customer By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/customer/:customer-id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"customer",
+								":customer-id"
+							],
+							"variable": [
+								{
+									"key": "customer-id",
+									"value": "msk4949"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllCustomers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/customer/allCustomers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"customer",
+								"allCustomers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCustomer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerId\": \"msk4949\",\r\n    \"firstName\": \"sachin\",\r\n    \"lastName\": \"kumar\",\r\n    \"email\": \"msk4949@gmail.com\",\r\n    \"phone\": \"72072650000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/customer/saveCustomer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"customer",
+								"saveCustomer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCustomer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerId\": \"msk4949\",\r\n    \"firstName\": \"sachin\",\r\n    \"lastName\": \"kumar\",\r\n    \"email\": \"msk4949@gmail.com\",\r\n    \"phone\": \"720726500000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/customer/updateCustomer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"customer",
+								"updateCustomer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reservation Api's",
+			"item": [
+				{
+					"name": "Create Reservation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerId\" :\"msk4949\",\r\n    \"hotelId\" :1,\r\n    \"roomType\": \"Luxury\",\r\n    \"startDate\" : \"2024-08-19\",\r\n    \"endDate\" :\"2024-08-20\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/v1/reservation/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"v1",
+								"reservation",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetReservation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/api/v1/reservation/:reservationId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"v1",
+								"reservation",
+								":reservationId"
+							],
+							"variable": [
+								{
+									"key": "reservationId",
+									"value": "2d673738-d38d-4d13-a28f-1bfd7b78725e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetReservationByHotel",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/api/v1/reservation/by/hotel/:hotel-id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"v1",
+								"reservation",
+								"by",
+								"hotel",
+								":hotel-id"
+							],
+							"variable": [
+								{
+									"key": "hotel-id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetReservationByuser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/api/v1/reservation/by/customer/:customer-id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"v1",
+								"reservation",
+								"by",
+								"customer",
+								":customer-id"
+							],
+							"variable": [
+								{
+									"key": "customer-id",
+									"value": "msk4949"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PaymentAPI",
+			"item": [
+				{
+					"name": "updatePaymetnCompletion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"paymentId\": \"7e8d9ce7-1fd9-457b-869d-57db9d1ae4bc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/v1/payment/updatePaymentStatus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"payment",
+								"updatePaymentStatus"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

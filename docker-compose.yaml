@@ -1,0 +1,78 @@
+version: '3.9'
+services:
+    zipkin-service:
+        image : openzipkin/zipkin
+        container_name: zipkin
+        networks:
+         - default
+        ports:
+            - "9411:9411"
+    loki-service:
+        image : grafana/loki
+        container_name: loki
+        networks:
+         - default
+        ports:
+            - "3100:3100"
+    config-server:
+        image : config-server-app
+        container_name: config-server
+        networks:
+         - default
+        ports:
+            - "8711:8711"
+        depends_on:
+            zipkin-service:
+                condition: service_healthy     
+        environment:
+            ZIPKIN_BASE_URL: http://zipkin-service:9411
+            EUREKA_BASE_URL: http://eureka-server:8712/eureka/            
+        healthcheck:
+         test: ["CMD", "wget", "--spider", "http://localhost:8711/actuator/health"]
+         interval: 50s
+         timeout: 10s
+         retries: 3
+         start_period: 10s
+    eureka-server:
+        image : eureka-server-app
+        container_name: eureka-server
+        networks:
+         - default
+        ports:
+           - "8712:8712"
+        depends_on:
+            config-server:
+                condition: service_healthy
+        environment:
+            ZIPKIN_BASE_URL: http://zipkin-service:9411
+            CONFIG_SERVER_URL: http://config-server:8711
+            OTLP_TRACING_ENDPOINT: http://zipkin-service:9411/api/v2/spans
+            SPRING_PROFILES_ACTIVE: dev
+        healthcheck:
+         test: ["CMD", "wget", "--spider", "http://localhost:8712/actuator/health"]
+         interval: 50s
+         timeout: 10s
+         retries: 3
+         start_period: 10s
+    gateway-server:
+        image : gateway-server-app
+        container_name: gateway-server
+        networks:
+         - default
+        ports:
+            - "8713:8713"
+        depends_on:
+            eureka-server:
+                condition: service_healthy
+        environment:
+            ZIPKIN_BASE_URL: http://zipkin-service:9411
+            CONFIG_SERVER_URL: http://config-server:8711
+            EUREKA_BASE_URL: http://eureka-server:8712/eureka
+            OTLP_TRACING_ENDPOINT: http://zipkin-service:9411/api/v2/spans
+            SPRING_PROFILES_ACTIVE: dev
+        healthcheck:
+         test: ["CMD", "wget", "--spider", "http://localhost:8713/actuator/health"]
+         interval: 50s
+         timeout: 10s
+         retries: 3
+         start_period: 10s
